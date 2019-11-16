@@ -1,0 +1,21 @@
+extends layouts/withoutSidebar.pug
+
+block content
+    .containers.my-5
+        .row
+            .col-md-4.mx-auto
+                form(action="/login" method="POST")
+                    .form-group
+                        label(for='user') Name
+                        input#user.form-control(type='text' name="name" placeholder='Your name')
+                    .form-group
+                        label(for='user') Email
+                        input#user.form-control(type='email' name="email" placeholder='Your email')
+                    .form-group
+                        label(for='password') Password
+                        input#password.form-control(type='password' name="password" placeholder='Password')
+                    button.btn.btn-primary(type='submit') Register
+
+                    p 
+                        | Already have an account? 
+                        a(href="/login") login Here
