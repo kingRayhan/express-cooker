@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 
-const formatJoiErrors = (Schema, data) => {
+const formatJoiErrors = error => {
     // const { error } = Schema.validate(data)
     // const { error } = Joi.validate(data, Schema, {
     //     abortEarly: false
@@ -12,6 +12,6 @@ const formatJoiErrors = (Schema, data) => {
     //     error.details.map(err => (errors[err.path[0]] = err.message))
     // }
 
-    return errors
+    return error
 }
 module.exports = formatJoiErrors

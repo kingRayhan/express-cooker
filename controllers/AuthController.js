@@ -1,26 +1,31 @@
-// const Joi = require('@hapi/joi')
+const Joi = require('@hapi/joi')
 // const jwt = require('jsonwebtoken')
 // const bcryptjs = require('bcryptjs')
 // const Op = require('sequelize').Op
 // const admin = require('~services/firebase-admin')
 
-// const User = require('~models/User')
-// const Interest = require('~models/Interest')
+const User = require('~models/User')
 // const INITIAL_PERMISSIONS = require('../database/INITIAL_PERMISSIONS')
 // const PERMISSIONS = require('~PERMISSIONS')
 
-// const me = async (req, res) => {
-//     let ataAmi = await User.findOne({
-//         where: { id: req.user.id },
-//         include: [Interest],
-//     })
-//     res.json(ataAmi)
-// }
+const registerController = async (req, res) => {
+    const schema = Joi.object().keys({
+        name: Joi.string()
+            .trim()
+            .required(),
+        email: Joi.string()
+            .email()
+            .required(),
+        password: Joi.string()
+            .min(5)
+            .max(10)
+            .required(),
+    })
+    await schema.validateAsync(req.body)
 
-const loginController = (req, res) => {
-    res.json(req.body)
+    res.render('register')
 }
 
 module.exports = {
-    loginController,
+    registerController,
 }

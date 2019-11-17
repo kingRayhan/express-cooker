@@ -3,4 +3,4 @@ const catchErrors = fn => {
         return fn(req, res, next).catch(next)
     }
 }
-exports.catchErrors = catchErrors
+module.exports = catchErrors

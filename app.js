@@ -1,5 +1,6 @@
 const express = require('express')
-
+var session = require('express-session')
+var cookieParser = require('cookie-parser')
 /**
  * Initialize Express application
  */
@@ -16,6 +17,18 @@ app.use(express.static('public'))
 app.use(require('cors')())
 
 /**
+ * Connect Flash
+ */
+app.use(cookieParser('secret'))
+app.use(
+    session({
+        secret: process.env.APP_SECRET,
+        resave: false,
+        saveUninitialized: false,
+    })
+)
+app.use(require('connect-flash')())
+/**
  * PUG templating engine
  */
 app.set('view engine', 'pug')
@@ -29,6 +42,11 @@ if (process.env.NODE_ENV === 'development') app.use(require('morgan')('dev'))
  */
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+app.use(function(req, res, next) {
+    res.locals.flashes = req.flash()
+    next()
+})
 
 /**
  * ---------------------------------------

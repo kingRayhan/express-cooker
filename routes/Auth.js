@@ -1,9 +1,9 @@
 const router = require('express').Router()
 
-// const { catchErrors } = require('~errorHandlers/catchErrors')
+const catchErrors = require('~errorHandlers/catchErrors')
 // const { UPDATE_PROFILE, ADMIN, UPDATE_PERMISSIONS } = require('~PERMISSIONS')
 
-const { loginController } = require('~controllers/AuthController')
+const { registerController } = require('~controllers/AuthController')
 // const isAuthenticated = require('~middlewares/isAuthenticated')
 // const hasPermission = require('~middlewares/hasPermission')
 
@@ -13,11 +13,10 @@ router.get('/login', (req, res) => {
     res.render('login')
 })
 
-router.post('/login', loginController)
-
 router.get('/register', (req, res) => {
     res.render('register')
 })
+router.post('/register', catchErrors(registerController))
 
 // router.post(
 //     '/update-permissions/:userId',
