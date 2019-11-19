@@ -1,34 +1,35 @@
 const formatDBValidationErrors = require('~formatters/formatDBValidationErrors')
 const formatJoiErrors = require('~formatters/formatJoiErrors')
-const errorMsg = require('~errorHandlers/errorMsg')
-const ERROR_TYPES = {
-    VALIDATION_ERROR: 'VALIDATION_ERROR',
-    JWT_ERROR: 'JWT_ERROR',
-    SERVER_ERROR: 'SERVER_ERROR',
-}
+
+// const ERROR_TYPES = {
+//     VALIDATION_ERROR: 'VALIDATION_ERROR',
+//     JWT_ERROR: 'JWT_ERROR',
+//     SERVER_ERROR: 'SERVER_ERROR',
+// }
 
 module.exports = (error, req, res, next) => {
     if (error.name === 'ValidationError') {
         let errors = formatJoiErrors(error)
         req.flash('errors', errors)
-        next()
+        res.redirect('back')
     }
 
+    next()
+
     // let errorObject = null
-    // /**
-    //  * Error thrown from sequelize
-    //  */
-    // if (
-    //     error.name === 'SequelizeValidationError' ||
-    //     error.name === 'SequelizeUniqueConstraintError'
-    // ) {
-    //     res.status(400)
-    //     errorObject = errorMsg(
-    //         ERROR_TYPES.VALIDATION_ERROR,
-    //         400,
-    //         formatDBValidationErrors(error.errors)
-    //     )
-    // }
+    /**
+     * Error thrown from sequelize
+     */
+    if (
+        error.name === 'SequelizeValidationError' ||
+        error.name === 'SequelizeUniqueConstraintError'
+    ) {
+        let errors = formatDBValidationErrors(error)
+        req.flash('errors', errors)
+        res.redirect('back')
+    }
+
+    console.log(JSON.stringify(error, undefined, 4))
     // if (error.name === 'SequelizeConnectionError') {
     //     res.status(500)
     //     errorObject = errorMsg(

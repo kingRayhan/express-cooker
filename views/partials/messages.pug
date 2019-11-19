@@ -1,1 +1,11 @@
-pre #{JSON.stringify(locals.flashes)}
+.container
+    .row
+        .col-md-8.mx-auto
+            if locals.flashes.errors
+                each msg in locals.flashes.errors
+                    .alert.alert-danger(role='alert')
+                        | #{msg}
+
+            if locals.flashes.success
+                    .alert.alert-primary(role='alert')
+                        | #{locals.flashes.success}

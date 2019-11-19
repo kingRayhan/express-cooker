@@ -16,6 +16,11 @@ body {
     transition: margin 0.25s ease-out;
 }
 
+#menu-toggle:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 #sidebar-wrapper .sidebar-heading {
     padding: 0.875rem 1.25rem;
     font-size: 1.2rem;
@@ -25,12 +30,33 @@ body {
     width: 15rem;
 }
 
+#sidebar-wrapper .list-group a {
+    color: black;
+}
+#sidebar-wrapper .list-group a:hover {
+    text-decoration: none;
+}
+
 #page-content-wrapper {
     min-width: 100vw;
 }
 
 #wrapper.toggled #sidebar-wrapper {
     margin-left: 0;
+}
+
+.submenu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: 15px;
+    background: #eae8e8;
+    display: none;
+    padding: 12px 15px;
+}
+
+.submenu ul li {
+    margin: 5px 0;
 }
 
 @media (min-width: 768px) {

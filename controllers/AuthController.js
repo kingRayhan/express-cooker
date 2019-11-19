@@ -21,9 +21,11 @@ const registerController = async (req, res) => {
             .max(10)
             .required(),
     })
-    await schema.validateAsync(req.body)
+    await schema.validateAsync(req.body, { abortEarly: false })
 
-    res.render('register')
+    await User.create(req.body)
+    req.flash('success', 'Registered successfully done')
+    res.redirect('/')
 }
 
 module.exports = {

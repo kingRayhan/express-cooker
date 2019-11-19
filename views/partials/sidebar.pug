@@ -1,9 +1,22 @@
 #sidebar-wrapper.bg-light.border-right
 	.sidebar-heading Express Admin
-	.list-group.list-group-flush
-		a.list-group-item.list-group-item-action.bg-light(href='#') Dashboard
-		a.list-group-item.list-group-item-action.bg-light(href='#') Shortcuts
-		a.list-group-item.list-group-item-action.bg-light(href='#') Overview
-		a.list-group-item.list-group-item-action.bg-light(href='#') Events
-		a.list-group-item.list-group-item-action.bg-light(href='#') Profile
-		a.list-group-item.list-group-item-action.bg-light(href='#') Status
+	ul.list-group.list-group-flush
+		li.list-group-item.list-group-item-action.bg-light
+			a(href="#") Home
+		li.list-group-item.list-group-item-action.bg-light
+			a(href="#") Home
+		li.list-group-item.list-group-item-action.bg-light.submenu
+			a(href="#").d-flex.justify-content-between.align-items-center
+				| Submenus
+				i.fa.fa-plus.pl-2
+			ul
+				li
+					a(href="#") Submenu 1
+				li
+					a(href="#") Submenu 1
+				li
+					a(href="#") Submenu 1
+				li
+					a(href="#") Submenu 1
+		li.list-group-item.list-group-item-action.bg-light
+			a(href="#") Home

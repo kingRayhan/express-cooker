@@ -45,6 +45,8 @@ app.use(express.json())
 
 app.use(function(req, res, next) {
     res.locals.flashes = req.flash()
+    res.locals.title = process.env.APP_NAME
+    res.locals.icon = require('~utils/svgIcon')
     next()
 })
 
