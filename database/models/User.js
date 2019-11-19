@@ -8,7 +8,7 @@ const User = db.define('user', {
     email: {
         type: Sequelize.STRING,
         unique: {
-            msg: 'Already in use',
+            msg: 'Email already in use',
         },
         validate: {
             isEmail: {
