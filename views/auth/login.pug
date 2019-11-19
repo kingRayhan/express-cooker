@@ -1,19 +1,22 @@
-extends layouts/withoutSidebar.pug
+extends ../layouts/withoutSidebar.pug
 
 block content
     .containers.my-5
         .row
             .col-md-4.mx-auto
-                form
+                form(action="/login" method="POST")
                     .form-group
                         label(for='user') Email/Username
-                        input#user.form-control(type='email' placeholder='Enter email')
-                        small#emailHelp.form-text.text-muted We&apos;ll never share your email with anyone else.
+                        input#user.form-control(type='text' placeholder='Enter email' name="email")
                     .form-group
                         label(for='password') Password
-                        input#password.form-control(type='password' placeholder='Password')
+                        input#password.form-control(type='password' placeholder='Password' name="password")
+
+
                     button.btn.btn-primary(type='submit') Login
 
+                    br
+                    br
                     p 
                         | Don't have any account? 
                         a(href="/register") Register One

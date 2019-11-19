@@ -28,6 +28,7 @@ app.use(
     })
 )
 app.use(require('connect-flash')())
+
 /**
  * PUG templating engine
  */
@@ -45,6 +46,7 @@ app.use(express.json())
 
 app.use(function(req, res, next) {
     res.locals.flashes = req.flash()
+    res.locals.user = req.session.user
     res.locals.title = process.env.APP_NAME
     res.locals.icon = require('~utils/svgIcon')
     next()
@@ -56,7 +58,7 @@ app.use(function(req, res, next) {
  * ---------------------------------------
  */
 
-app.get('/', (req, res) => {
+app.get('/', require('~middlewares/isAuthenticated'), (req, res) => {
     res.render('index')
 })
 

@@ -13,7 +13,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.border-bottom
         a.nav-link(href='#') Link
       li.nav-item.dropdown
         a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-          | Dropdown
+          | #{locals.user.name}
         .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdown')
           a.dropdown-item(href='#') Action
           a.dropdown-item(href='#') Another action
